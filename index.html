@@ -1,0 +1,106 @@
+<html>
+<meta http-equiv="Content-type" content="text/html; charset=windows-1250" />
+<head>
+</head>
+<body>
+<div id="top_1">
+</div>
+
+<table width="100%" border = "0">
+<tr>
+<td width="50%" valign="top">
+<h1>WESOŁYCH ŚWIĄT WIELKANOCNYCH!</h1>
+<body style="background-color: #d0e99f">
+<p>
+<font size="+3">Z okazji Świąt Wielkanocnych życzę Państwu przede wszystkim spokoju,<br> 
+zdrowia i chwil prawdziwego odpoczynku w gronie najbliższych.<br>
+ Niech ten świąteczny czas przyniesie świeżą energię,<br>
+ pogodę ducha i nadzieję na lepsze jutro.<br>
+ Oby wiosna zagościła nie tylko za oknem, ale i w sercu – dając radość,<br> 
+ optymizm i siłę na nadchodzące wyzwania. Wesołych i pogodnych Świąt Wielkiej Nocy!</font>
+ 
+  <font size="+3"><marquee><p class="pozdro">POZDRAWIAM</p></marquee></font>
+</td>
+<td>
+<img src="wielkanoc.png" alt="obrazek wielkanocny" width="100%" align="right" />
+</td>
+</tr>
+</table>
+  <font size="12"><div id="zegar"></div></font>
+
+
+
+<script type="text/javascript">
+var S=[];
+
+function init(IM, HM, i) {
+  for (i=0; i<HM; i++) {
+    (S[i]={}).o=document.createElement('img');
+    with (S[i].o) {
+      src=IM;
+      style.position="absolute";
+    }
+    with (Math) {
+      S[i].dx=0;
+      S[i].xp=random()*(document.body.clientWidth-50);
+      S[i].yp=random()*document.body.clientHeight;
+      S[i].am=random()*20;
+      S[i].stx=0.02+random()/10;
+      S[i].sty=0.7+random();
+    }
+    document.body.appendChild(S[i].o);
+  }
+  snow(HM);
+}
+
+function snow(HM, i) {
+  for(i=0; i<HM; i++) {
+    with (S[i]) {
+      yp+=sty;
+      if (yp > document.body.clientHeight-50) {
+        with (Math) {
+          xp=random()*(document.body.clientWidth-am-30);
+          yp=0;
+          stx=0.02+random()/10;
+          sty=0.7+random();
+        }
+      }
+      dx+=stx;
+      o.style.top=~~(yp)+"px";
+      o.style.left=~~(xp+am*Math.sin(dx))+"px";
+    }
+  }
+  setTimeout("snow("+HM+")",10);
+}
+
+onload=function()
+{
+  init('snow2.gif', 80);
+  odliczanie();
+}
+
+        function odliczanie() {
+            var dzisiaj = new Date();
+            var dzien = dzisiaj.getDate();
+            var miesiac = dzisiaj.getMonth() + 1;
+            if (miesiac == 3) miesiac = "marzec";
+            var rok = dzisiaj.getFullYear();
+
+            var godzina = dzisiaj.getHours();
+            if (godzina < 10) godzina = "0" + godzina;
+
+            var minuta = dzisiaj.getMinutes();
+            if (minuta < 10) minuta = "0" + minuta;
+
+            var sekunda = dzisiaj.getSeconds();
+            if (sekunda < 10) sekunda = "0" + sekunda;
+
+            document.getElementById("zegar").innerHTML =
+                dzien + "/" + miesiac + "/" + rok + " | " + godzina + ":" + minuta + ":" + sekunda;
+
+            setTimeout("odliczanie()", 1000);
+        }
+
+</script>
+</body>
+</html>
